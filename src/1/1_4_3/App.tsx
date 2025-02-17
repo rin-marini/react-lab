@@ -6,7 +6,7 @@
 */
 
 
-const baseUrl = 'https://i.imgur.com/';
+const baseUrl = '/';
 const person = {
   name: 'Gregorio Y. Zara',
   imageId: '7vQD0fP',
