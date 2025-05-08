@@ -1,21 +1,13 @@
-// 2_1_2 Wire up the events
-/*
-  Этот компонент ColorSwitch отображает кнопку. Он должен менять цвет страницы. Подключите его к обработчику события onChangeColor, который он получает от родителя, чтобы щелчок по кнопке изменил цвет.
-
-  После того, как вы это сделаете, обратите внимание, что нажатие на кнопку также увеличивает счетчик нажатий на страницу. Ваш коллега, написавший родительский компонент, настаивает, что onChangeColor не увеличивает никаких счетчиков. Что еще может происходить? Исправьте это так, чтобы нажатие на кнопку только изменяло цвет и не увеличивало счетчик.
-*/
-
 import { useState } from "react";
 
-function ColorSwitch({
-  onChangeColor
-}: {
-  onChangeColor: () => void
-}) {
+function ColorSwitch({onChangeColor}: {onChangeColor: () => void}) {
+  function handleClick(event: React.MouseEvent) {
+    event.stopPropagation(); 
+    onChangeColor();
+  }
+
   return (
-    <button>
-      Change color
-    </button>
+    <button onClick={handleClick}>Change color</button>
   );
 }
 
