@@ -1,15 +1,11 @@
-// 3_4_2 Swap two form fields
-/*
-  Эта форма позволяет вводить имя и фамилию. В ней также есть флажок, контролирующий, какое поле будет первым. Если установить флажок, поле "Фамилия" появится перед полем "Имя".
-
-  Это почти работает, но есть ошибка. Если вы заполните поле "Имя" и установите флажок, текст останется в первом поле (теперь это "Фамилия"). Исправьте это так, чтобы при изменении порядка ввода текст также перемещался.
-*/
-
 import { useState } from 'react';
 
 export default function App() {
   const [reverse, setReverse] = useState(false);
-  let checkbox = (
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  const checkbox = (
     <label>
       <input
         type="checkbox"
@@ -19,35 +15,42 @@ export default function App() {
       Reverse order
     </label>
   );
-  if (reverse) {
-    return (
-      <>
-        <Field label="Last name" /> 
-        <Field label="First name" />
-        {checkbox}
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Field label="First name" /> 
-        <Field label="Last name" />
-        {checkbox}
-      </>
-    );    
-  }
+
+  return (
+    <>
+      {reverse ? (
+        <>
+          <Field label="Last name" value={lastName} onChange={setLastName} />
+          <Field label="First name" value={firstName} onChange={setFirstName} />
+        </>
+      ) : (
+        <>
+          <Field label="First name" value={firstName} onChange={setFirstName} />
+          <Field label="Last name" value={lastName} onChange={setLastName} />
+        </>
+      )}
+      {checkbox}
+    </>
+  );
 }
 
-function Field({ label }: { label: string }) {
-  const [text, setText] = useState('');
+function Field({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (val: string) => void;
+}) {
   return (
     <label>
       {label}:{' '}
       <input
         type="text"
-        value={text}
+        value={value}
         placeholder={label}
-        onChange={e => setText(e.target.value)}
+        onChange={e => onChange(e.target.value)}
       />
     </label>
   );
