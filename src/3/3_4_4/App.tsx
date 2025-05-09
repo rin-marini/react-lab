@@ -1,20 +1,16 @@
-// 3_4_4 Clear an image while it’s loading
-/*
-  Когда вы нажимаете кнопку "Далее", браузер начинает загрузку следующего изображения. Однако, поскольку оно отображается в том же теге img, по умолчанию вы будете видеть предыдущее изображение, пока не загрузится следующее. Это может быть нежелательно, если важно, чтобы текст всегда совпадал с изображением. Измените это так, чтобы при нажатии кнопки "Next" предыдущее изображение сразу же убиралось.
-*/
-
 import { useState } from 'react';
 
 export default function Gallery() {
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
   const hasNext = index < images.length - 1;
 
   function handleClick() {
-    if (hasNext) {
+    if (hasNext) 
       setIndex(index + 1);
-    } else {
+    else
       setIndex(0);
-    }
+    setLoading(true); 
   }
 
   let image = images[index];
@@ -26,7 +22,12 @@ export default function Gallery() {
       <h3>
         Image {index + 1} of {images.length}
       </h3>
-      <img src={image.src} />
+      {loading && <p>Loading...</p>} {}
+      <img
+        src={image.src}
+        onLoad={() => setLoading(false)} 
+        style={{ display: loading ? 'none' : 'block' }} 
+      />
       <p>
         {image.place}
       </p>
