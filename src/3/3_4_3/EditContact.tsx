@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Contact } from './App';
 
-export default function EditContact(
-    { initialData, onSave }:{
-      initialData: Contact;
-      onSave: (data: Contact) => void;
-    }
-) {
+export default function EditContact({ 
+  initialData, 
+  onSave 
+} : {
+  initialData: Contact;
+  onSave: (data: Contact) => void;
+}) {
   const [name, setName] = useState(initialData.name);
   const [email, setEmail] = useState(initialData.email);
   return (
