@@ -1,16 +1,15 @@
 import { Action } from './messengerReducer';
 import { Contact } from './App';
 
-export default function Chat(
-  {
-    contact, message, dispatch
-  }:
-    {
-      contact: Contact,
-      message: string,
-      dispatch: (action: Action) => void
-    }
-) {
+export default function Chat({
+  contact, 
+  message, 
+  dispatch
+} : {
+  contact: Contact,
+  message: string,
+  dispatch: (action: Action) => void
+}) {
   return (
     <section className="chat">
       <textarea
