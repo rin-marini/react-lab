@@ -1,30 +1,35 @@
 import { Action } from './messengerReducer';
 import { Contact } from './App';
 
-export default function Chat(
-    {
-        contact, message, dispatch
-    }:
-    {
-        contact: Contact,
-        message: string,
-        dispatch: (action: Action) => void
-    }
-) {
+export default function Chat({
+  contact, 
+  message, 
+  dispatch
+} : {
+  contact: Contact,
+  message: string,
+  dispatch: (action: Action) => void
+}) {
+  const handleSendMessage = () => {
+    alert(`Message to: ${contact.email}\nMessage: ${message}`);
+    dispatch({
+      type: 'edited_message',
+      message: ''
+    });
+  };
+
   return (
     <section className="chat">
       <textarea
         value={message}
         placeholder={'Chat to ' + contact.name}
-        onChange={(e) => {
-            dispatch({
-                type: 'edited_message',
-                message: e.target.value,
-              });
-        }}
+        onChange={(e) => dispatch({
+          type: 'edited_message',
+          message: e.target.value
+        })}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button onClick={handleSendMessage}>Send to {contact.email}</button>
     </section>
   );
 }
