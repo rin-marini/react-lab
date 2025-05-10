@@ -1,17 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ContactType } from './App';
 
-export default function EditContact(
-    { savedContact, onSave }:
-    { savedContact: ContactType, onSave: (updatedData: ContactType) => void }
+export default function EditContact({ 
+  savedContact, 
+  onSave 
+} : { 
+  savedContact: ContactType, 
+  onSave: (updatedData: ContactType) => void }
 ) {
   const [name, setName] = useState(savedContact.name);
   const [email, setEmail] = useState(savedContact.email);
-
-  useEffect(() => {
-    setName(savedContact.name);
-    setEmail(savedContact.email);
-  }, [savedContact]);
 
   return (
     <section>
