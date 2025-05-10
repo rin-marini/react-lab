@@ -1,7 +1,7 @@
 export type Todo = {
-    id: number;
-    text: string;
-    completed: boolean;
+  id: number;
+  text: string;
+  completed: boolean;
 };
 
 
@@ -18,5 +18,5 @@ export function createTodo(text: string, completed = false): Todo {
 export const initialTodos: Todo[] = [
   createTodo('Get apples', true),
   createTodo('Get oranges', true),
-  createTodo('Get carrots'),
+  createTodo('Get carrots')
 ];
